@@ -1,0 +1,89 @@
+AI Assistance Declaration: I used ChatGPT (GPT-5.6 Sol) for brainstorming documentation structure, Markdown formatting suggestions, wording refinement, and review support. Prompts used are listed in Appendix.md. I verified the final content by reviewing the Markdown structure, checking the R Markdown organization, and confirming that no real or personal data is used. All final calculations are done by myself. I am responsible for the accuracy and originality of this work.
+
+---
+title: "Sales Summary Script Documentation"
+author: "Douha Suliman"
+date: "September 25, 2026"
+output: html_document
+---
+
+# Purpose
+
+This R Markdown document explains the purpose, inputs, processing steps, and outputs of the `sales_summary.R` script.
+
+The script demonstrates a simple workflow using a **synthetic sales dataset**. It imports the data, calculates revenue for each row, summarizes revenue by product, and prints the final summary.
+
+# Inputs
+
+The script uses one input file:
+
+- `data/synthetic_sales.csv`
+
+The synthetic dataset contains the following fields:
+
+- `OrderID` — synthetic order identifier.
+- `Product` — product name.
+- `Quantity` — number of units.
+- `UnitPrice` — price per unit.
+
+# Script Logic
+
+## 1. Import the Dataset
+
+The script reads the CSV file with base R:
+
+```{r eval=FALSE}
+sales <- read.csv("data/synthetic_sales.csv")
+```
+
+## 2. Create a Revenue Field
+
+Revenue is calculated for each row by multiplying quantity by unit price:
+
+```{r eval=FALSE}
+sales$Revenue <- sales$Quantity * sales$UnitPrice
+```
+
+## 3. Summarize Revenue by Product
+
+The `aggregate()` function groups the data by product and sums the revenue values:
+
+```{r eval=FALSE}
+revenue_by_product <- aggregate(
+  Revenue ~ Product,
+  data = sales,
+  FUN = sum
+)
+```
+
+## 4. Display the Result
+
+The final summary is printed in the R console:
+
+```{r eval=FALSE}
+print(revenue_by_product)
+```
+
+# Outputs
+
+The script produces a table with:
+
+- one row per product;
+- a product name; and
+- total revenue for that product.
+
+# Validation
+
+I reviewed the document for:
+
+- consistent Markdown and R Markdown headings;
+- correctly fenced R code chunks;
+- matching file names and paths;
+- clear descriptions of inputs and outputs; and
+- use of synthetic rather than personal or real data.
+
+The code chunks are shown with `eval=FALSE` so the document focuses on explaining the script rather than using AI-generated calculations.
+
+# Conclusion
+
+This file provides a concise explanation of a single R script and demonstrates how R Markdown can be used to create clear technical documentation.
